@@ -1,2 +1,3 @@
 # AzureDemo
 AzureDemo
+Region: southafricanorth
