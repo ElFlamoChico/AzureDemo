@@ -8,7 +8,7 @@ variable "vm_size" {
   default     = "B1s"
 }
 
-variable "name" {
+variable "vm_name" {
   description = "Virtual Machine Name"
   default     = "VM Provisioned by Terraform"
 }
