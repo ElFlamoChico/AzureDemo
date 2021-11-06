@@ -32,9 +32,7 @@ resource "azurerm_windows_virtual_machine" "example" {
   size                = "B1s"
   admin_username      = "adminuser"
   admin_password      = "Password@123"
-  #network_interface_ids = [
-  #  azurerm_network_interface.example.id,
-  #]
+  network_interface_ids = "ipconfig1"
 
   os_disk {
     caching              = "ReadWrite"
