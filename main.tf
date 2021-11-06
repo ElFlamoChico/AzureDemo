@@ -25,15 +25,41 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "example" {
-  name                = "example-machine"
+resource "azurerm_virtual_network" "TFAzureMerv" {
+  name                = "TFAzureMerv_vnet"
+  address_space       = ["10.0.0.0/16"]
+  location            = "southafricanorth"
+  resource_group_name = "RG_TFAzureMerv"
+}
+
+resource "azurerm_subnet" "example" {
+  name                 = "internal"
+  resource_group_name  = "RG_TFAzureMerv"
+  virtual_network_name = "TFAzureMerv_vnet"
+  address_prefixes     = ["10.0.2.0/24"]
+}
+
+resource "azurerm_network_interface" "TFAzureMerv" {
+  name                = "TFAzureMerv_nic"
+  location            = "southafricanorth"
+  resource_group_name = "RG_TFAzureMerv"
+
+  ip_configuration {
+    name                          = "internal"
+#    subnet_id                     = azurerm_subnet.example.id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
+
+resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
+  name                = "VM_TFAZureMerv"
   resource_group_name = "RG_TFAzureMerv"
   location            = "southafricanorth"
   size                = "B1s"
   admin_username      = "adminuser"
   admin_password      = "Password@123"
-  network_interface_ids = "ipconfig1"
-
+  network_interface_ids = "TFAzureMerv"
+  
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
