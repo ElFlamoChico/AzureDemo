@@ -58,9 +58,7 @@ resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
   size                = var.vm_size
   admin_username      = "adminuser"
   admin_password      = "Password@123"
-  network_interface_ids = [
-    var.vm_nic
-  ]
+  network_interface_ids = [azurerm_network_interface.TFAzureMerv.id]
   
   os_disk {
     caching              = "ReadWrite"
