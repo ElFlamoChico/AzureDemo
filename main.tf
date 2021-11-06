@@ -59,7 +59,7 @@ resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
   admin_username      = "adminuser"
   admin_password      = "Password@123"
   network_interface_ids = [
-    TFAzureMerv_vnet
+    azurerm_network_interface.example.id,
   ]
   
   os_disk {
