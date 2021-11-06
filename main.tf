@@ -24,3 +24,7 @@ resource "azurerm_resource_group" "rg" {
     "BU" = "ICS"
   }
 }
+
+resource "azurerm_windows_virtual_machine" "example" {
+
+}
