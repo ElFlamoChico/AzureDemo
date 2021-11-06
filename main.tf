@@ -14,3 +14,13 @@ provider "azurerm" {
   features {}
 
 }
+
+resource "azurerm_resource_group" "rg" {
+  name     = "RG_TFAzureMerv"
+  location = "southafricanorth"
+  tags = {
+    "Owner" = "Mervyn"
+    "Purpose" = "Test"
+    "BU" = "ICS"
+  }
+}
