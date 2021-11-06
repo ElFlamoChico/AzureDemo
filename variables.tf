@@ -17,8 +17,3 @@ variable "resource_group_name" {
   description = "Name of Azure Resource Group"
   default = "RG Provisioned by Terraform"
 }
-
-variable "vm_nic" {
-  description = "Default Network"
-  default = "MervVnet"
-}
