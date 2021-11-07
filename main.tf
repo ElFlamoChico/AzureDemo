@@ -58,7 +58,7 @@ resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = var.vm_size
-  admin_username      = "admin"
+  admin_username      = "TFAzureMervAdmin"
   admin_password      = "Password@123"
   network_interface_ids = [azurerm_network_interface.TFAzureMerv.id]
   
