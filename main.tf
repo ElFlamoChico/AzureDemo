@@ -53,7 +53,7 @@ resource "azurerm_network_interface" "TFAzureMerv" {
 }
 
 resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
-  name                = "TFAZureMerv-VM"
+  computer_name       = "TFAZureMerv-VM"
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = var.vm_size
