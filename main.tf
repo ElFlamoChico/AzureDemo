@@ -15,7 +15,7 @@ provider "azurerm" {
 
 }
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "TFAzureMerv" {
   name     = var.resource_group_name
   location = var.location
   tags = {
@@ -32,7 +32,7 @@ resource "azurerm_virtual_network" "TFAzureMerv" {
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_subnet" "example" {
+resource "azurerm_subnet" "TFAzureMerv" {
   name                 = "internal"
   resource_group_name  = var.resource_group_name
   virtual_network_name = "TFAzureMerv_vnet"
@@ -46,7 +46,7 @@ resource "azurerm_network_interface" "TFAzureMerv" {
 
   ip_configuration {
     name                          = "internal"
-#    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = azurerm_subnet.TFAzureMerv.id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -58,7 +58,7 @@ resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
   size                = var.vm_size
   admin_username      = "adminuser"
   admin_password      = "Password@123"
-  network_interface_ids = [element(azurerm_network_interface.test.*.id, count.index)]
+  network_interface_ids = [element(azurerm_network_interface.TFAzureMerv.*.id, count.index)]
   
   os_disk {
     caching              = "ReadWrite"
