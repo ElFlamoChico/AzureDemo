@@ -33,11 +33,12 @@ resource "azurerm_virtual_network" "TFAzureMerv" {
 }
 
 resource "azurerm_subnet" "TFAzureMerv" {
-  name                 = "internal"
+  name                 = "TFAzureMerv_sub"
   resource_group_name  = var.resource_group_name
-  virtual_network_name = "TFAzureMerv_vnet"
+  virtual_network_name = azurerm_virtual_network.TFAzureMerv.name
   address_prefixes     = ["10.0.2.0/24"]
 }
+
 
 resource "azurerm_network_interface" "TFAzureMerv" {
   name                = "TFAzureMerv_nic"
@@ -45,7 +46,7 @@ resource "azurerm_network_interface" "TFAzureMerv" {
   resource_group_name = var.resource_group_name
 
   ip_configuration {
-    name                          = "internal"
+    name                          = azurerm_subnet.TFAzureMerv.name
     subnet_id                     = azurerm_subnet.TFAzureMerv.id
     private_ip_address_allocation = "Dynamic"
   }
@@ -56,7 +57,7 @@ resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = var.vm_size
-  admin_username      = "adminuser"
+  admin_username      = "admin"
   admin_password      = "Password@123"
   network_interface_ids = [azurerm_network_interface.TFAzureMerv.id]
   
