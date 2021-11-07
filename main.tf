@@ -26,14 +26,14 @@ resource "azurerm_resource_group" "TFAzureMerv" {
 }
 
 resource "azurerm_virtual_network" "TFAzureMerv" {
-  name                = "TFAzureMerv_vnet"
+  name                = "TFAzureMervVNET"
   address_space       = ["10.0.0.0/16"]
   location            = var.location
   resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_subnet" "TFAzureMerv" {
-  name                 = "TFAzureMerv_sub"
+  name                 = "TFAzureMervSUB"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.TFAzureMerv.name
   address_prefixes     = ["10.0.2.0/24"]
@@ -41,7 +41,7 @@ resource "azurerm_subnet" "TFAzureMerv" {
 
 
 resource "azurerm_network_interface" "TFAzureMerv" {
-  name                = "TFAzureMerv_nic"
+  name                = "TFAzureMervNIC"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -54,6 +54,7 @@ resource "azurerm_network_interface" "TFAzureMerv" {
 
 resource "azurerm_windows_virtual_machine" "TFAzureMerv" {
   computer_name       = "TFAZureMerv-VM"
+  name                = "TFAZureMervVM"
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = var.vm_size
