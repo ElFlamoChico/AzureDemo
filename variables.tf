@@ -5,7 +5,7 @@ variable "location" {
 
 variable "vm_size" {
   description = "Type of Azure VM to provision"
-  default     = "B1s"
+  default     = "Standard_B1s"
 }
 
 variable "resource_group_name" {
