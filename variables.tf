@@ -10,5 +10,5 @@ variable "vm_size" {
 
 variable "resource_group_name" {
   description = "Name of Azure Resource Group"
-  default = "RG Provisioned by Terraform"
+  default = "RG_TFAzureMerv"
 }
